@@ -1,0 +1,26 @@
+{
+  "family": "my-task",
+  "containerDefinitions": [
+    {
+      "name": "my-container",
+      "image": "<ECR_REPOSITORY_URI>:latest",
+      "memory": 512,
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/my-task",
+          "awslogs-region": "<AWS_REGION>",
+          "awslogs-stream-prefix": "my-container"
+        }
+      }
+    }
+  ],
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512"
+}
